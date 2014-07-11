@@ -79,6 +79,7 @@ final class ArcanistRubocopLinter extends ArcanistExternalLinter {
         $message->setPath($file['path']);
         $message->setLine($offense['location']['line']);
         $message->setChar($offense['location']['column']);
+        $message->setCode('RUBY');
         $message->setName($offense['cop_name']);
         $message->setDescription($offense['message']);
         $message->setseverity($severityMap[$offense['severity']]);
