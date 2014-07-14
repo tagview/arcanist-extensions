@@ -4,6 +4,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 
 ## Extensions
 
+- [RSpec Test Engine](#rspec_test_engine)
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
 
@@ -28,6 +29,23 @@ Then, just list the desired extensions on the `load` key of your project's `.arc
 
 ## Available extensions
 
+### `rspec_test_engine`
+
+This extension allows you to run tests with the [RSpec](http://rspec.info/) library. To use it, just set your test engine as `RSpecTestEngine`:
+
+```json
+{
+  "project_id": "my-awesome-project",
+  "conduit_uri": "https://example.org",
+
+  "load": [
+    ".arcanist-extensions/rspec_test_engine"
+  ]
+
+  "unit.engine": "RSpectTestEngine"
+}
+```
+
 ### `rubocop_linter`
 
 This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually and make sure you have the `rubocop` executable listed on your `$PATH`. 
@@ -50,6 +68,6 @@ To use this extension, you must specify the command that will run your tests (ju
   ]
 
   "unit.engine": "TAPTestEngine",
-  "unit.engine.tap.command": "bundle exec rake spec",
+  "unit.engine.tap.command": "bundle exec rake spec"
 }
 ```
