@@ -20,7 +20,7 @@ Then, just list the desired extensions on the `load` key of your project's `.arc
 {
   "project_id": "my-awesome-project",
   "conduit_uri": "https://example.org",
-  
+
   "load": [
     ".arcanist-extensions/[extension_name]"
   ]
@@ -48,7 +48,24 @@ This extension allows you to run tests with the [RSpec](http://rspec.info/) libr
 
 ### `rubocop_linter`
 
-This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually and make sure you have the `rubocop` executable listed on your `$PATH`. 
+This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually and make sure you have the `rubocop` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the Rubocop Linter:
+
+```json
+{
+  "linters": {
+    "ruby": {
+      "type": "rubocop",
+      "include": "/\\.(rb|rake)$/",
+      "exclude": "(^db/schema\\.rb)"
+    }
+  }
+}
+
+```
+
+For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).
 
 If you need to customize the default style rules, just create a `.rubocop.yml` file on the root of your project as you would normally do.
 
