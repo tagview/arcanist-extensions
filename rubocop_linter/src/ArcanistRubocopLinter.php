@@ -25,11 +25,6 @@ final class ArcanistRubocopLinter extends ArcanistLinter {
     return 'rubocop';
   }
 
-  public function getVersion() {
-    list($stdout) = execx('rubocop --version');
-    return $stdout;
-  }
-
   public function getLinterConfigurationOptions() {
     return array();
   }
@@ -37,6 +32,7 @@ final class ArcanistRubocopLinter extends ArcanistLinter {
   final public function lintPath($path) {}
 
   public function willLintPaths(array $paths) {
+    $this->checkRubocopInstallation();
     $this->execution = new ExecFuture('rubocop --format=json --no-color ' . implode($paths, ' '));
   }
 
@@ -49,6 +45,14 @@ final class ArcanistRubocopLinter extends ArcanistLinter {
       foreach ($messages as $message) {
         $this->addLintMessage($message);
       }
+    }
+  }
+
+  private function checkRubocopInstallation() {
+    if (!Filesystem::binaryExists('rubocop')) {
+      throw new ArcanistUsageException(
+        pht('Rubocop is not installed, please run `gen install rubocop` or add it to your Bundler Gemfile')
+      );
     }
   }
 
