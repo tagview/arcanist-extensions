@@ -1,6 +1,7 @@
 <?php
 
-final class ArcanistRubocopLinter extends ArcanistExternalLinter {
+final class ArcanistRubocopLinter extends ArcanistLinter {
+  private $execution;
 
   public function getInfoName() {
     return 'Rubocop';
@@ -24,44 +25,35 @@ final class ArcanistRubocopLinter extends ArcanistExternalLinter {
     return 'rubocop';
   }
 
-  public function getDefaultBinary() {
-    return 'rubocop';
+  public function getVersion() {
+    list($stdout) = execx('rubocop --version');
+    return $stdout;
   }
 
-  public function getVersion() {
-    list($stdout) = execx('%C --version', $this->getExecutableCommand());
+  public function getLinterConfigurationOptions() {
+    return array();
+  }
 
-    $matches = array();
-    if (preg_match('/^(?P<version>\d+\.\d+\.\d+)$/', $stdout, $matches)) {
-      return $matches['version'];
-    } else {
-      return false;
+  final public function lintPath($path) {}
+
+  public function willLintPaths(array $paths) {
+    $this->execution = new ExecFuture('rubocop --format=json --no-color ' . implode($paths, ' '));
+  }
+
+  final public function didRunLinters() {
+    if ($this->execution) {
+      list($err, $stdout, $stderr) = $this->execution->resolve();
+
+      $messages = $this->parseLinterOutput($stdout);
+
+      foreach ($messages as $message) {
+        $this->addLintMessage($message);
+      }
     }
   }
 
-  public function getInstallInstructions() {
-    return pht('Install Rubocop using `gem install rubocop`.');
-  }
-
-  public function shouldExpectCommandErrors() {
-    return true;
-  }
-
-  public function supportsReadDataFromStdin() {
-    return false;
-  }
-
-  protected function getMandatoryFlags() {
-    $options = array(
-      '--format=json',
-      '--no-color',
-    );
-
-    return $options;
-  }
-
-  protected function parseLinterOutput($path, $err, $stdout, $stderr) {
-    $json = json_decode($stdout, true);
+  protected function parseLinterOutput($output) {
+    $json = json_decode($output, true);
     $files = $json['files'];
 
     $severityMap = array();
@@ -69,7 +61,7 @@ final class ArcanistRubocopLinter extends ArcanistExternalLinter {
     $severityMap['convention'] = 'warning';
     $severityMap['warning'] = 'warning';
     $severityMap['error'] = 'error';
-    $severityMap['fatal'] = 'errror';
+    $severityMap['fatal'] = 'error';
 
     $messages = array();
 
