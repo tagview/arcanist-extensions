@@ -28,3 +28,23 @@ Then, just list the desired extensions on the `load` key of your project's `.arc
 This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually and make sure you have the `rubocop` executable listed on your `$PATH`. 
 
 If you need to customize the default style rules, just create a `.rubocop.yml` file on the root of your project as you would normally do.
+
+### `tap_test_engine`
+
+This extension adds a [TAP](http://testanything.org/) test engine, so Arcanist may run tests from any tool that implements this protocol.
+
+To use this extension, you must specify the command that will run your tests (just remember that this command must return a TAP compatible output):
+
+```json
+{
+  "project_id": "my-awesome-project",
+  "conduit_uri": "https://example.org",
+
+  "load": [
+    ".arcanist-extensions/tap_test_engine"
+  ],
+
+  "unit.engine": "TAPTestEngine",
+  "unit.engine.tap.command": "bundle exec rake spec",
+}
+```
