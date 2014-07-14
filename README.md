@@ -40,7 +40,7 @@ This extension allows you to run tests with the [RSpec](http://rspec.info/) libr
 
   "load": [
     ".arcanist-extensions/rspec_test_engine"
-  ]
+  ],
 
   "unit.engine": "RSpectTestEngine"
 }
@@ -65,7 +65,7 @@ To use this extension, you must specify the command that will run your tests (ju
 
   "load": [
     ".arcanist-extensions/tap_test_engine"
-  ]
+  ],
 
   "unit.engine": "TAPTestEngine",
   "unit.engine.tap.command": "bundle exec rake spec"
