@@ -2,6 +2,11 @@
 
 This project provides some useful extensions for [Arcanist](https://github.com/phacility/arcanist).
 
+## Extensions
+
+- [Rubocop Linter](#rubocop_linter)
+- [TAP Test Engine](#tap_test_engine)
+
 ## Installation
 
 The easiest way to include some (or all) the extensions on your own projects is by adding this repository as git submodule, given you are using git (which you obviously should):
@@ -42,7 +47,7 @@ To use this extension, you must specify the command that will run your tests (ju
 
   "load": [
     ".arcanist-extensions/tap_test_engine"
-  ],
+  ]
 
   "unit.engine": "TAPTestEngine",
   "unit.engine.tap.command": "bundle exec rake spec",
