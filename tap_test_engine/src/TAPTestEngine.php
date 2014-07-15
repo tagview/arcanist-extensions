@@ -7,12 +7,15 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
 
     $future = new ExecFuture('%C', $command);
 
-    try {
-      list($stdout, $stderr) = $future->resolvex();
-      return $this->parseOutput($stdout);
-    } catch(CommandException $execution) {
-      return $this->parseOutput($execution->getStdout());
-    }
+    do {
+      list($stdout, $stderr) = $future->read();
+      echo $stdout;
+      echo $stderr;
+      sleep(0.5);
+    } while (!$future->isReady());
+
+    list($error, $stdout, $stderr) = $future->resolve();
+    return $this->parseOutput($stdout);
   }
 
   public function shouldEchoTestResults() {

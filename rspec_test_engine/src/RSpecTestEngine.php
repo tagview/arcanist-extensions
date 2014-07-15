@@ -3,14 +3,19 @@
 final class RSpecTestEngine extends ArcanistBaseUnitTestEngine {
 
   public function run() {
-    $future = new ExecFuture('bundle exec rspec -f json');
+    $output = new TempFile();
 
-    try {
-      list($stdout, $stderr) = $future->resolvex();
-      return $this->parseOutput($stdout);
-    } catch(CommandException $execution) {
-      return $this->parseOutput($execution->getStdout());
-    }
+    $future = new ExecFuture('rspec -f json -o '. $output .' -f progress');
+
+    do {
+      list($stdout, $stderr) = $future->read();
+      echo $stdout;
+      sleep(0.5);
+    } while (!$future->isReady());
+
+    $future->resolve();
+
+    return $this->parseOutput(Filesystem::readFile($output));
   }
 
   public function shouldEchoTestResults() {
