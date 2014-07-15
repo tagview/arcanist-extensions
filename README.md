@@ -4,6 +4,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 
 ## Extensions
 
+- [Multi Test Engine](#multi_test_engine)
 - [RSpec Test Engine](#rspec_test_engine)
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
@@ -31,6 +32,27 @@ Then, just list the desired extensions on the `load` key of your project's `.arc
 ```
 
 ## Available extensions
+
+### `multi_test_engine`
+
+This extensions allows you to run tests with multiple engines. It is usefull when your project has code writenn in more than one programming languages.
+
+Above is an example of a `.arcconfig` file that runs both Ruby tests - with the [`RSpecTestEngine`](#rspec_test_engine) - and Python tests - with the native Arcanist `PytestTestEngine`:
+
+```json
+{
+  "project_id": "my-awesome-project",
+  "conduit_uri": "https://example.org",
+
+  "load": [
+    ".arcanist-extensions/rspec_test_engine",
+    ".arcanist-extensions/multi_test_engine"
+  ],
+
+  "unit.engine": "MultiTestEngine",
+  "unit.engine.multi-test": ["RSpecTestEngine", "PytestTestEngine"]
+}
+```
 
 ### `rspec_test_engine`
 
