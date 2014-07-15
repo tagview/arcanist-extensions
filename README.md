@@ -42,7 +42,7 @@ This extension allows you to run tests with the [RSpec](http://rspec.info/) libr
     ".arcanist-extensions/rspec_test_engine"
   ],
 
-  "unit.engine": "RSpectTestEngine"
+  "unit.engine": "RSpecTestEngine"
 }
 ```
 
