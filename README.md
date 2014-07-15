@@ -12,7 +12,10 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 
 The easiest way to include some (or all) the extensions on your own projects is by adding this repository as git submodule, given you are using git (which you obviously should):
 
-`git submodule update  --init git@github.com:tagview/arcanist-extensions.git .arcanist-extensions`
+```
+$ git submodule add https://github.com/tagview/arcanist-extensions.git .arcanist-extensions
+$ git submodule update --init
+````
 
 Then, just list the desired extensions on the `load` key of your project's `.arcconfig` file.
 
@@ -62,7 +65,6 @@ Below is an example of an `.arclint` file that includes the Rubocop Linter:
     }
   }
 }
-
 ```
 
 For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).
