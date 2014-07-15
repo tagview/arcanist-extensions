@@ -16,7 +16,7 @@ The easiest way to include some (or all) the extensions on your own projects is 
 ```
 $ git submodule add https://github.com/tagview/arcanist-extensions.git .arcanist-extensions
 $ git submodule update --init
-````
+```
 
 Then, just list the desired extensions on the `load` key of your project's `.arcconfig` file.
 
@@ -51,6 +51,34 @@ Above is an example of a `.arcconfig` file that runs both Ruby tests - with the 
 
   "unit.engine": "MultiTestEngine",
   "unit.engine.multi-test.engines": ["RSpecTestEngine", "PytestTestEngine"]
+}
+```
+
+You may also want to specify a configuration for each engine. For example, here we are using two [`TapTestEngines`](#tap_test_engine) with different commands:
+
+```json
+{
+  "project_id": "my-awesome-project",
+  "conduit_uri": "https://example.org",
+
+  "load": [
+    ".arcanist-extensions/rspec_test_engine",
+    ".arcanist-extensions/tap_test_engine",
+    ".arcanist-extensions/multi_test_engine"
+  ],
+
+  "unit.engine": "MultiTestEngine",
+  "unit.engine.multi-test": [
+    "RSpecTestEngine",
+    {
+      "engine": "TapTestEngine",
+      "unit.engine.tap.command": "bundle exec teaspoon -f tap"
+    },
+    {
+      "engine": "TapTestEngine",
+      "unit.engine.tap.command": "karma run spec/js/karma.conf"
+    }
+  ]
 }
 ```
 

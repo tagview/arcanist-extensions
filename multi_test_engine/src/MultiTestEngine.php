@@ -3,11 +3,25 @@
 final class MultiTestEngine extends ArcanistBaseUnitTestEngine {
 
   public function run() {
-    $engines = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.multi-test.engines');
+    $config = $this->getConfigurationManager();
+
+    $engines = $config->getConfigFromAnySource('unit.engine.multi-test.engines');
 
     $results = array();
 
-    foreach ($engines as $engine_class) {
+    foreach ($engines as $engine_or_configuration) {
+      if (is_array($engine_or_configuration)) {
+        $engine_class = $engine_or_configuration['engine'];
+
+        foreach ($engine_or_configuration as $configuration => $value) {
+          if ($configuration != 'engine') {
+            $config->setRuntimeConfig($configuration, $value);
+          }
+        }
+      } else {
+        $engine_class = $engine_or_configuration;
+      }
+
       $engine = $this->instantiateEngine($engine_class);
       $results = array_merge($results, $engine->run());
     }
