@@ -50,7 +50,7 @@ Above is an example of a `.arcconfig` file that runs both Ruby tests - with the 
   ],
 
   "unit.engine": "MultiTestEngine",
-  "unit.engine.multi-test": ["RSpecTestEngine", "PytestTestEngine"]
+  "unit.engine.multi-test.engines": ["RSpecTestEngine", "PytestTestEngine"]
 }
 ```
 
