@@ -5,7 +5,7 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
   public function run() {
     $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.tap.command');
 
-    $future = new ExecFuture('%C', $command);
+    $future = new ExecFuture($command);
 
     do {
       list($stdout, $stderr) = $future->read();
@@ -32,12 +32,17 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
       $result = new ArcanistUnitTestResult();
       $result->setName(trim($matches[2]));
 
-      if ($matches[1] == 'ok') {
-        $result->setResult(ArcanistUnitTestResult::RESULT_PASS);
-      } elseif ($matches[1] == 'not ok') {
-        $result->setResult(ArcanistUnitTestResult::RESULT_FAIL);
-      } else {
-        continue;
+      switch (trim($matches[1])) {
+        case 'ok':
+          $result->setResult(ArcanistUnitTestResult::RESULT_PASS);
+          break;
+
+        case 'not ok':
+          $result->setResult(ArcanistUnitTestResult::RESULT_FAIL);
+          break;
+
+        default:
+          continue;
       }
 
       $results[] = $result;
