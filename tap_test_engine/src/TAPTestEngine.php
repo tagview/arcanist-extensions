@@ -24,8 +24,9 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
 
   private function parseOutput($output) {
     $results = array();
+    $lines = explode(PHP_EOL, $output);
 
-    foreach(explode(PHP_EOL, $output) as $line) {
+    foreach($lines as $index => $line) {
       preg_match('/^(not ok|ok)\s+\d+\s+-?(.*)/', $line, $matches);
       if (count($matches) < 3) continue;
 
@@ -38,7 +39,9 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
           break;
 
         case 'not ok':
+          $exception_message = trim($lines[$index + 1]);
           $result->setResult(ArcanistUnitTestResult::RESULT_FAIL);
+          $result->setUserData($exception_message);
           break;
 
         default:
