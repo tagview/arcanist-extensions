@@ -84,7 +84,7 @@ You may also want to specify a configuration for each engine. For example, here 
 
 ### `rspec_test_engine`
 
-This extension allows you to run tests with the [RSpec](http://rspec.info/) library. To use it, just set your test engine as `RSpecTestEngine`:
+This extension allows you to run tests with [RSpec](http://rspec.info/) (version 3 or later). To use it, just set your test engine as `RSpecTestEngine`:
 
 ```json
 {
@@ -98,8 +98,6 @@ This extension allows you to run tests with the [RSpec](http://rspec.info/) libr
   "unit.engine": "RSpecTestEngine"
 }
 ```
-
-`rspec_test_engine` requires RSpec 3.0.0 or later.
 
 ### `rubocop_linter`
 
@@ -125,7 +123,7 @@ If you need to customize the default style rules, just create a `.rubocop.yml` f
 
 ### `tap_test_engine`
 
-This extension adds a [TAP](http://testanything.org/) test engine, so Arcanist may run tests from any tool that implements this protocol.
+This extension implements a generic [TAP](http://testanything.org/) test engine, so Arcanist may run tests from any tool that implements this protocol.
 
 To use this extension, you must specify the command that will run your tests (just remember that this command must return a TAP compatible output):
 
