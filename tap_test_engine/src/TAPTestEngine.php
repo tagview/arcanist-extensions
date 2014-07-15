@@ -26,7 +26,7 @@ final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
     $results = array();
 
     foreach(explode(PHP_EOL, $output) as $line) {
-      preg_match('/^(not ok|ok)[^-]*-(.*)/', $line, $matches);
+      preg_match('/^(not ok|ok)\s+\d+\s+-?(.*)/', $line, $matches);
       if (count($matches) < 3) continue;
 
       $result = new ArcanistUnitTestResult();
