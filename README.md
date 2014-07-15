@@ -71,6 +71,8 @@ This extension allows you to run tests with the [RSpec](http://rspec.info/) libr
 }
 ```
 
+`rspec_test_engine` requires RSpec 3.0.0 or later.
+
 ### `rubocop_linter`
 
 This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually and make sure you have the `rubocop` executable listed on your `$PATH`.
