@@ -84,7 +84,7 @@ You may also want to specify a configuration for each engine. For example, here 
 
 ### `rspec_test_engine`
 
-This extension allows you to run tests with [RSpec](http://rspec.info/) (version 3 or later). To use it, just set your test engine as `RSpecTestEngine`:
+This extension allows you to run tests with [RSpec](http://rspec.info/) (version 2 or later). To use it, just set your test engine as `RSpecTestEngine`:
 
 ```json
 {
