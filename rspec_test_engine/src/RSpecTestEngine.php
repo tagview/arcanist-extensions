@@ -5,7 +5,8 @@ final class RSpecTestEngine extends ArcanistBaseUnitTestEngine {
   public function run() {
     $output = new TempFile();
     
-    $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.rspec.command') || 'rspec';
+    $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.rspec.command');
+    if (!$command) $command = 'rspec';
 
     $future = new ExecFuture($command .' -f json -o '. $output .' -f progress');
 
