@@ -68,7 +68,7 @@ You may also specify a configuration for each engine. Below is an example that u
   ],
 
   "unit.engine": "MultiTestEngine",
-  "unit.engine.multi-test": [
+  "unit.engine.multi-test.engines": [
     "RSpecTestEngine",
     {
       "engine": "TapTestEngine",
