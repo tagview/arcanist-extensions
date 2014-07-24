@@ -99,6 +99,22 @@ This extension allows you to run tests with [RSpec](http://rspec.info/) (version
 }
 ```
 
+You can change the `rspec` executable path if it for some reason is not found in your `$PATH` variable (maybe you are using Bundler without binstubs):
+
+```json
+{
+  "project_id": "my-awesome-project",
+  "conduit_uri": "https://example.org",
+
+  "load": [
+    ".arcanist-extensions/rspec_test_engine"
+  ],
+
+  "unit.engine": "RSpecTestEngine",
+  "unit.engine.rspec.command": "bundle exec rspec"
+}
+```
+
 ### `rubocop_linter`
 
 This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually. Just make sure you have the `rubocop` executable listed on your `$PATH`.
