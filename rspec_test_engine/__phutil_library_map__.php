@@ -16,6 +16,6 @@ phutil_register_library_map(array(
   ),
   'xmap' =>
   array(
-    'RSpecTestEngine' => 'ArcanistBaseUnitTestEngine',
+    'RSpecTestEngine' => 'ArcanistUnitTestEngine',
   ),
 ));

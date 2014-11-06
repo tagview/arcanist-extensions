@@ -1,6 +1,6 @@
 <?php
 
-final class MultiTestEngine extends ArcanistBaseUnitTestEngine {
+final class MultiTestEngine extends ArcanistUnitTestEngine {
 
   public function run() {
     $config = $this->getConfigurationManager();

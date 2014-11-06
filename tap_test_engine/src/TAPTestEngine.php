@@ -1,6 +1,6 @@
 <?php
 
-final class TAPTestEngine extends ArcanistBaseUnitTestEngine {
+final class TAPTestEngine extends ArcanistUnitTestEngine {
 
   public function run() {
     $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.tap.command');
