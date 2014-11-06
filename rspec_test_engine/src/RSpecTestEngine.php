@@ -1,10 +1,10 @@
 <?php
 
-final class RSpecTestEngine extends ArcanistBaseUnitTestEngine {
+final class RSpecTestEngine extends ArcanistUnitTestEngine {
 
   public function run() {
     $output = new TempFile();
-    
+
     $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.rspec.command');
     if (!$command) $command = 'rspec';
 
