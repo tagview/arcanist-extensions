@@ -30,9 +30,11 @@ final class MultiTestEngine extends ArcanistUnitTestEngine {
   }
 
   private function instantiateEngine($engine_class) {
-    if (!class_exists($engine_class) || !is_subclass_of($engine_class, 'ArcanistBaseUnitTestEngine')) {
+    $is_test_engine = is_subclass_of($engine_class, 'ArcanistBaseUnitTestEngine') || is_subclass_of($engine_class, 'ArcanistUnitTestEngine');
+
+    if (!class_exists($engine_class) || !$is_test_engine) {
       throw new ArcanistUsageException(
-        "Configured unit test engine '{$engine_class}' is not a subclass of 'ArcanistBaseUnitTestEngine'."
+        "Configured unit test engine '{$engine_class}' is not a subclass of 'ArcanistUnitTestEngine'."
       );
     }
 
