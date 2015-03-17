@@ -8,6 +8,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 - [RSpec Test Engine](#rspec_test_engine)
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
+- [SCSS-Lint Linter](#scss_lint_linter)
 
 ## Installation
 
@@ -156,3 +157,22 @@ To use this extension, you must inform the command that will run your tests (jus
   "unit.engine.tap.command": "bundle exec rake spec"
 }
 ```
+
+### `scss_lint_linter`
+
+This extension will lint your project using the awesome [SCSS-Lint](https://github.com/causes/scss-lint) library. It is important to mention that the extension won't install scss-lint, so you must do it manually. Just make sure you have the `scss-lint` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the SCSS-Lint Linter:
+
+```json
+{
+  "linters": {
+    "scss-lint": {
+      "type": "scss-lint",
+      "include": "/\\.(scss)$/"
+    }
+  }
+}
+```
+
+For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).
