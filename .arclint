@@ -1,0 +1,47 @@
+{
+  "linters": {
+    "chmod": {
+      "type": "chmod"
+    },
+    "filename": {
+      "type": "filename"
+    },
+    "jshint": {
+      "type": "jshint",
+      "include": "(\\.js$)",
+      "exclude": [],
+      "jshint.jshintrc": ".jshintrc"
+    },
+    "json": {
+      "type": "json",
+      "include": [
+        "(^\\.arcconfig$)",
+        "(^\\.arclint$)",
+        "(\\.json$)"
+      ]
+    },
+    "merge-conflict": {
+      "type": "merge-conflict"
+    },
+    "nolint": {
+      "type": "nolint"
+    },
+    "spelling": {
+      "type": "spelling"
+    },
+    "text": {
+      "type": "text"
+    },
+    "ruby": {
+      "type": "rubocop",
+      "include": "/\\.(rb|rake)$/",
+      "exclude": "(^db/schema\\.rb)",
+      "rubocop.config": ".rubocop.yml"
+    },
+    "scss-lint": {
+      "type": "scss-lint",
+      "include": "/\\.(scss)$/",
+      "scss-lint.config": ".scss-lint.yml"
+    }
+  }
+}
