@@ -2,6 +2,7 @@
 
 final class ArcanistRubocopLinter extends ArcanistLinter {
   private $execution;
+  private $config;
 
   public function getInfoName() {
     return 'Rubocop';
@@ -26,14 +27,31 @@ final class ArcanistRubocopLinter extends ArcanistLinter {
   }
 
   public function getLinterConfigurationOptions() {
-    return array();
+    $options = array(
+      'rubocop.config' => array(
+        'type' => 'optional string',
+        'help' => pht('A custom configuration file.'),
+      ),
+    );
+
+    return $options + parent::getLinterConfigurationOptions();
+  }
+
+  public function setLinterConfigurationValue($key, $value) {
+    switch ($key) {
+      case 'rubocop.config':
+        $this->config = $value;
+        return;
+    }
+
+    return parent::setLinterConfigurationValue($key, $value);
   }
 
   final public function lintPath($path) {}
 
   public function willLintPaths(array $paths) {
     $this->checkRubocopInstallation();
-    $this->execution = new ExecFuture('rubocop --format=json --no-color ' . implode($paths, ' '));
+    $this->execution = new ExecFuture('rubocop --format=json --no-color --config ' . $this->config . ' ' .implode($paths, ' '));
   }
 
   final public function didRunLinters() {
