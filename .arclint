@@ -29,6 +29,11 @@
     "spelling": {
       "type": "spelling"
     },
+    "text": {
+      "type": "text",
+      "include" : "(\\.(txt|md|html|haml?)$)",
+      "text.max-line-length": 120
+    },
     "ruby": {
       "type": "rubocop",
       "include": "/\\.(rb|rake)$/",
