@@ -29,9 +29,6 @@
     "spelling": {
       "type": "spelling"
     },
-    "text": {
-      "type": "text"
-    },
     "ruby": {
       "type": "rubocop",
       "include": "/\\.(rb|rake)$/",
