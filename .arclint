@@ -32,7 +32,7 @@
     "text": {
       "type": "text",
       "include" : "(\\.(txt|md|html|haml?)$)",
-      "text.max-line-length": 120
+      "text.max-line-length": 100
     },
     "ruby": {
       "type": "rubocop",
