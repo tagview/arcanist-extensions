@@ -51,7 +51,7 @@ final class ArcanistRubocopLinter extends ArcanistLinter {
   private function checkRubocopInstallation() {
     if (!Filesystem::binaryExists('rubocop')) {
       throw new ArcanistUsageException(
-        pht('Rubocop is not installed, please run `gen install rubocop` or add it to your Bundler Gemfile')
+        pht('Rubocop is not installed, please run `gem install rubocop` or add it to your Bundler Gemfile')
       );
     }
   }
