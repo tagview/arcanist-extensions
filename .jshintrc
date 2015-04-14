@@ -54,5 +54,6 @@
   "node"          : false,
   "nonstandard"   : false,
 
-  "globals"       : {}
+  "globals"       : {},
+  "predef"        : ["angular", "_"]
 }
