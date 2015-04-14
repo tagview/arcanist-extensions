@@ -54,7 +54,7 @@ Below is an example of an `.arcconfig` that runs both Ruby tests - with the [`RS
 }
 ```
 
-You can also define some specific configuration for each engine. Below is an example that uses two [`TapTestEngines`](#tap_test_engines) with different commands:
+You can also define some specific configuration for each engine. Below is an example that uses two [`TAPTestEngines`](#tap_test_engines) with different commands:
 
 ```json
 {
@@ -71,11 +71,11 @@ You can also define some specific configuration for each engine. Below is an exa
   "unit.engine.multi-test.engines": [
     "RSpecTestEngine",
     {
-      "engine": "TapTestEngine",
+      "engine": "TAPTestEngine",
       "unit.engine.tap.command": "bundle exec teaspoon -f tap"
     },
     {
-      "engine": "TapTestEngine",
+      "engine": "TAPTestEngine",
       "unit.engine.tap.command": "karma run spec/js/karma.conf"
     }
   ]
