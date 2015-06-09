@@ -1,4 +1,5 @@
 {
+  "exclude": "(^vendor/)",
   "linters": {
     "chmod": {
       "type": "chmod"
