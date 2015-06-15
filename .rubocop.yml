@@ -748,7 +748,7 @@ Metrics/AbcSize:
   Description: >-
                  A calculated magnitude based on number of assignments,
                  branches, and conditions.
-  Enabled: true
+  Enabled: false
 
 Metrics/BlockNesting:
   Description: 'Avoid excessive block nesting'
@@ -775,7 +775,7 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Description: 'Avoid methods longer than 10 lines of code.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
-  Enabled: true
+  Enabled: false
 
 Metrics/ParameterLists:
   Description: 'Avoid parameter lists longer than three or four parameters.'
