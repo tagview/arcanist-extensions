@@ -110,7 +110,7 @@ Style/ClassAndModuleCamelCase:
 
 Style/ClassAndModuleChildren:
   Description: 'Checks style of children classes and modules.'
-  Enabled: true
+  Enabled: false
 
 Style/ClassCheck:
   Description: 'Enforces consistent use of `Object#is_a?` or `Object#kind_of?`.'
@@ -763,7 +763,7 @@ Metrics/CyclomaticComplexity:
   Description: >-
                  A complexity metric that is strongly correlated to the number
                  of test cases needed to validate a method.
-  Enabled: true
+  Enabled: false
 
 Metrics/LineLength:
   Description: 'Limit lines to 80 characters.'
