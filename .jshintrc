@@ -54,6 +54,8 @@
   "node"          : false,
   "nonstandard"   : false,
 
-  "globals"       : {},
+  "globals"       : {
+    "jQuery": false
+  },
   "predef"        : ["angular", "_"]
 }
