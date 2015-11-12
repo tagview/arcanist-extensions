@@ -5,7 +5,10 @@
       "type": "chmod"
     },
     "filename": {
-      "type": "filename"
+      "type": "filename",
+      "exclude": [
+        "(.*@2x\\.png$)"
+      ]
     },
     "jshint": {
       "type": "jshint",
