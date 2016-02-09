@@ -3,9 +3,11 @@
 final class TAPTestEngine extends ArcanistUnitTestEngine {
 
   public function run() {
+    $projectRoot = $this->getWorkingCopy()->getProjectRoot();
     $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.tap.command');
 
     $future = new ExecFuture($command);
+    $future->setCWD(Filesystem::resolvePath($projectRoot));
 
     do {
       list($stdout, $stderr) = $future->read();
