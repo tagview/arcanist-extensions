@@ -30,6 +30,10 @@
     "nolint": {
       "type": "nolint"
     },
+    "python": {
+      "type": "flake8",
+      "include": "(\\.py$)"
+    },
     "spelling": {
       "type": "spelling"
     },
