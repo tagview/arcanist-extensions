@@ -8,6 +8,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 - [RSpec Test Engine](#rspec_test_engine)
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
+- [ESlint Linter](#eslint_linter)
 
 ## Installation
 
@@ -154,6 +155,23 @@ To use this extension, you must inform the command that will run your tests (jus
 
   "unit.engine": "TAPTestEngine",
   "unit.engine.tap.command": "bundle exec rake spec"
+}
+```
+
+### `eslint_linter`
+
+This extension will lint your project using [ESlint](http://eslint.org). It is important to mention that the extension won't install ESlint, so you must do it manually. Just make sure you have the `eslint` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the ESlint Linter:
+
+```json
+{
+  "linters": {
+    "javascript": {
+      "type": "eslint",
+      "include": "/\\.js$/"
+    }
+  }
 }
 ```
 
