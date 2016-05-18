@@ -32,6 +32,7 @@ final class ArcanistEslintLinter extends ArcanistLinter {
   public function willLintPaths(array $paths) {
     $this->checkEslintInstallation();
     $this->execution = new ExecFuture('eslint --format=json --no-color ' . implode($paths, ' '));
+    $this->didRunLinters();
   }
 
   final public function didRunLinters() {
