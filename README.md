@@ -9,6 +9,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
 - [SCSS-Lint Linter](#scss_lint_linter)
+- [ESlint Linter](#eslint_linter)
 
 ## Installation
 
@@ -55,7 +56,7 @@ Below is an example of an `.arcconfig` that runs both Ruby tests - with the [`RS
 }
 ```
 
-You can also define some specific configuration for each engine. Below is an example that uses two [`TapTestEngines`](#tap_test_engines) with different commands:
+You can also define some specific configuration for each engine. Below is an example that uses two [`TAPTestEngines`](#tap_test_engines) with different commands:
 
 ```json
 {
@@ -72,11 +73,11 @@ You can also define some specific configuration for each engine. Below is an exa
   "unit.engine.multi-test.engines": [
     "RSpecTestEngine",
     {
-      "engine": "TapTestEngine",
+      "engine": "TAPTestEngine",
       "unit.engine.tap.command": "bundle exec teaspoon -f tap"
     },
     {
-      "engine": "TapTestEngine",
+      "engine": "TAPTestEngine",
       "unit.engine.tap.command": "karma run spec/js/karma.conf"
     }
   ]
@@ -175,4 +176,44 @@ Below is an example of an `.arclint` file that includes the SCSS-Lint Linter:
 }
 ```
 
+### `eslint_linter`
+
+This extension will lint your project using [ESlint](http://eslint.org). It is important to mention that the extension won't install ESlint, so you must do it manually. Just make sure you have the `eslint` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the ESlint Linter:
+
+```json
+{
+  "linters": {
+    "javascript": {
+      "type": "eslint",
+      "include": "/\\.js$/"
+    }
+  }
+}
+```
+
 For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).
+
+(The MIT License)
+
+Copyright (c) 2015 Tagview Tecnologia <team@tagview.com.br>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

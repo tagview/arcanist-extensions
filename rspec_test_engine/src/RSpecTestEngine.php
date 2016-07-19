@@ -45,6 +45,10 @@ final class RSpecTestEngine extends ArcanistUnitTestEngine {
           $result->setResult(ArcanistUnitTestResult::RESULT_FAIL);
           $result->setUserData($example['exception']['message']);
           break;
+
+        case 'pending':
+          $result->setResult(ArcanistUnitTestResult::RESULT_SKIP);
+          break;
       }
 
       $results[] = $result;
