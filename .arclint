@@ -16,6 +16,10 @@
       "exclude": [],
       "jshint.jshintrc": ".jshintrc"
     },
+    "eslint": {
+      "type": "eslint",
+      "include": "/\\.(js|jsx)$/"
+    },
     "json": {
       "type": "json",
       "include": [
