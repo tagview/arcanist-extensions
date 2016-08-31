@@ -16,7 +16,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 The easiest way to use any of these extensions on your own project, is by adding this repository as a git submodule, given you are using git (which you obviously should):
 
 ```
-$ git submodule add https://github.com/tagview/arcanist-extensions.git .arcanist-extensions
+$ git submodule add https://github.com/bitnami/arcanist-extensions.git .arcanist-extensions
 $ git submodule update --init
 ```
 
