@@ -2,6 +2,7 @@
 
 final class ArcanistEslintLinter extends ArcanistLinter {
   private $execution;
+  private $eslintBinaryPath = null;
 
   public function getInfoName() {
     return 'Eslint';
@@ -24,14 +25,30 @@ final class ArcanistEslintLinter extends ArcanistLinter {
   }
 
   public function getLinterConfigurationOptions() {
-    return array();
+    $options = array(
+      'eslint-binary-path' => array(
+        'type' => 'optional string',
+        'help' => pht('Path to the eslint binary to use.  If not, specified uses the global one.'),
+      ),
+    );
+    return $options + parent::getLinterConfigurationOptions();
+  }
+
+  public function setLinterConfigurationValue($key, $value) {
+    switch ($key) {
+      case 'eslint-binary-path':
+        $this->eslintBinaryPath = $value;
+        return;
+    }
+    return parent::setLinterConfigurationValue($key, $value);
   }
 
   final public function lintPath($path) {}
 
   public function willLintPaths(array $paths) {
     $this->checkEslintInstallation();
-    $this->execution = new ExecFuture('eslint --format=json --no-color ' . implode($paths, ' '));
+    $eslintBinary = $this->eslintBinaryPath ?: 'eslint';
+    $this->execution = new ExecFuture("$eslintBinary --format=json --no-color " . implode($paths, ' '));
     $this->didRunLinters();
   }
 
@@ -48,9 +65,13 @@ final class ArcanistEslintLinter extends ArcanistLinter {
   }
 
   private function checkEslintInstallation() {
-    if (!Filesystem::binaryExists('eslint')) {
+    if ($this->eslintBinaryPath && !Filesystem::binaryExists($this->eslintBinaryPath)) {
       throw new ArcanistUsageException(
-        pht('Eslint is not installed, please run `npm install eslint` or add it to your package.json')
+        pht('A eslint binary was specified but it cannot be found.  To use the global eslint do not specify a `eslint-binary-path`')
+      );
+    } else if (!$this->eslintBinaryPath && !Filesystem::binaryExists('eslint')) {
+      throw new ArcanistUsageException(
+        pht('Eslint is not installed, please run `npm install -g eslint` or set the `eslint-binary-path` option in your .arclint')
       );
     }
   }

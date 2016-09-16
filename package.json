@@ -1,0 +1,12 @@
+{
+  "name": "arcanist-npm-extensions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node package wrapper around various arcanist extensions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Lanter",
+  "license": "ISC"
+}
