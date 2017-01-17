@@ -1,0 +1,153 @@
+{
+    "jsRules": {
+        "align": [
+          true,
+          "parameters",
+          "statements"
+        ],
+        "class-name": true,
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "curly": true,
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "jsdoc-format": true,
+        "no-empty": true,
+        "no-eval": true,
+        "no-debugger": true,
+        "no-duplicate-variable": true,
+        "no-eval": true,
+        "no-trailing-whitespace": true,
+        "no-unsafe-finally": true,
+        "one-line": [
+            true,
+            "check-catch",
+            "check-finally",
+            "check-else",
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "one-variable-per-declaration": [
+          true,
+          "ignore-for-loop"
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-single",
+            "avoid-escape"
+        ],
+        "restrict-plus-operands": true,
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "switch-default": true,
+        "triple-equals": [
+            true,
+            "allow-null-check",
+            "allow-undefined-check"
+        ],
+        "typeof-compare": true,
+        "variable-name": [
+            true,
+            "check-format",
+            "allow-leading-underscore",
+            "ban-keywords"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    },
+    "rules": {
+        "align": [
+          true,
+          "parameters",
+          "statements"
+        ],
+        "adjacent-overload-signatures": true,
+        "arrow-parens": [
+          true,
+          "ban-single-arg-parens"
+        ],
+        "class-name": true,
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "jsdoc-format": true,
+        "no-eval": true,
+        "no-internal-module": true,
+        "no-trailing-whitespace": true,
+        "no-unsafe-finally": true,
+        "no-var-keyword": true,
+        "one-line": [
+            true,
+            "check-catch",
+            "check-finally",
+            "check-else",
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "one-variable-per-declaration": [
+          true,
+          "ignore-for-loop"
+        ],
+        "max-line-length": [
+          true,
+          120
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "jsx-single",
+            "avoid-escape"
+        ],
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check",
+            "allow-undefined-check"
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            }
+        ],
+        "variable-name": [
+            true,
+            "check-format",
+            "allow-leading-underscore",
+            "ban-keywords"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    }
+}
