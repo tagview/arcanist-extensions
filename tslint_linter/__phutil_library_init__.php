@@ -15,4 +15,4 @@
  limitations under the License.
  */
 
-phutil_register_library('tslint', __FILE__);
+phutil_register_library('tslint-linter', __FILE__);
