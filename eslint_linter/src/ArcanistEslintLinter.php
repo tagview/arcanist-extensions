@@ -39,7 +39,8 @@ final class ArcanistEslintLinter extends ArcanistLinter {
     if ($this->execution) {
       list($err, $stdout, $stderr) = $this->execution->resolve();
 
-      if ($err === 1) {
+      json_decode($stdout, true);
+      if ($err === 1 && json_last_error() !== JSON_ERROR_NONE) {
         throw new ArcanistNoEngineException(
           pht("$stdout\n\n\n$stderr")
         );
