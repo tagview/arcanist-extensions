@@ -23,7 +23,7 @@
     "ts": {
       "type": "tslint",
       "include": "(src/.*\\.(ts)$)"
-    }
+    },
     "json": {
       "type": "json",
       "include": [
