@@ -39,10 +39,16 @@ final class ArcanistEslintLinter extends ArcanistLinter {
     if ($this->execution) {
       list($err, $stdout, $stderr) = $this->execution->resolve();
 
-      $messages = $this->parseLinterOutput($stdout);
+      if ($err === 1) {
+        throw new ArcanistNoEngineException(
+          pht("$stdout\n\n\n$stderr")
+        );
+      } else {
+        $messages = $this->parseLinterOutput($stdout);
 
-      foreach ($messages as $message) {
-        $this->addLintMessage($message);
+        foreach ($messages as $message) {
+          $this->addLintMessage($message);
+        }
       }
     }
   }
@@ -64,6 +70,10 @@ final class ArcanistEslintLinter extends ArcanistLinter {
     $severityMap['2'] = 'error';
 
     $messages = array();
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      return $messages;
+    }
 
     foreach ($json as $file) {
       foreach ($file['messages'] as $offense) {
