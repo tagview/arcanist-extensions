@@ -20,6 +20,10 @@
       "type": "eslint",
       "include": "/\\.(js|jsx)$/"
     },
+    "ts": {
+      "type": "tslint",
+      "include": "(src/.*\\.(ts)$)"
+    },
     "json": {
       "type": "json",
       "include": [
