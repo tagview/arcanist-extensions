@@ -1,6 +1,6 @@
 # Adding linting
 
-How to add linting to a new bitanami project.
+How to add linting to a new bitnami project.
 
 ## Clone our arc extensions submodule (this one)
 
