@@ -1,3 +1,3 @@
 <?php
 
-phutil_register_library('eslint-linter', __FILE__);
+phutil_register_library('eslint-linter-bitnami', __FILE__);
