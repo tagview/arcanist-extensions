@@ -30,7 +30,7 @@ final class RSpecTestEngine extends ArcanistUnitTestEngine {
 
     foreach ($json['examples'] as $example) {
       $result = new ArcanistUnitTestResult();
-      $result->setName($example['full_description']);
+      $result->setName(substr($example['full_description'], 0, 250));
 
       if (array_key_exists('run_time', $example)) {
         $result->setDuration($example['run_time']);
