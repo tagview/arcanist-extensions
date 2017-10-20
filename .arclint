@@ -69,7 +69,7 @@
     },
     "markdown": {
       "type": "markdownlint",
-      "include": "/\\.(md|markdown)\\./",
+      "include": "/\\.(md|markdown)/",
       "mdl.config": ".mdlrc.cfg"
     }
   }
