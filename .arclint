@@ -66,6 +66,11 @@
       "type": "scss-lint",
       "include": "/\\.(scss)$/",
       "scss-lint.config": ".scss-lint.yml"
+    },
+    "markdown": {
+      "type": "markdownlint",
+      "include": "/\\.(md|markdown)\\./",
+      "mdl.config": ".mdlrc.cfg"
     }
   }
 }
