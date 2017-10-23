@@ -5,6 +5,16 @@ final class TAPTestEngine extends ArcanistUnitTestEngine {
   public function run() {
     $projectRoot = $this->getWorkingCopy()->getProjectRoot();
     $command = $this->getConfigurationManager()->getConfigFromAnySource('unit.engine.tap.command');
+    $eol = $this->getConfigurationManager()->getConfigFromAnySource(
+      'unit.engine.tap.eol'
+    );
+
+    /**
+     * Specifying line endings via config is optional, so default to PHP_EOL if not specified.
+     */
+    if (!$eol) {
+      $eol = PHP_EOL;
+    }
 
     $future = new ExecFuture($command);
     $future->setCWD(Filesystem::resolvePath($projectRoot));
@@ -17,16 +27,16 @@ final class TAPTestEngine extends ArcanistUnitTestEngine {
     } while (!$future->isReady());
 
     list($error, $stdout, $stderr) = $future->resolve();
-    return $this->parseOutput($stdout);
+    return $this->parseOutput($stdout, $eol);
   }
 
   public function shouldEchoTestResults() {
     return true;
   }
 
-  private function parseOutput($output) {
+  private function parseOutput($output, $eol) {
     $results = array();
-    $lines = explode(PHP_EOL, $output);
+    $lines = explode($eol, $output);
 
     foreach($lines as $index => $line) {
       preg_match('/^(not ok|ok)\s+\d+\s+-?(.*)/', $line, $matches);
