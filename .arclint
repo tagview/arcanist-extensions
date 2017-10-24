@@ -53,7 +53,7 @@
     },
     "text": {
       "type": "text",
-      "include" : "(\\.(txt|md|html|haml?)$)",
+      "include" : "(\\.(txt|html|haml?)$)",
       "text.max-line-length": 100
     },
     "ruby": {
