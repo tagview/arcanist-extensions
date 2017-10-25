@@ -17,8 +17,6 @@ Open a ruby file and write it straight away. If the file has
 any rubocop offenses it should display arrows in the gutter.
 See the syntastic docs for examples.
 
-
 ## Emacs
 
 ## Sublime
-

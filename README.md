@@ -10,6 +10,7 @@ This project provides some useful extensions for [Arcanist](https://github.com/p
 - [TAP Test Engine](#tap_test_engine)
 - [SCSS-Lint Linter](#scss_lint_linter)
 - [ESlint Linter](#eslint_linter)
+- [markdownlint Linter](#markdownlint_linter)
 
 ## Installation
 
@@ -193,27 +194,22 @@ Below is an example of an `.arclint` file that includes the ESlint Linter:
 }
 ```
 
+### `markdownlint_linter`
+
+This extension will lint your project using [markdownlint](https://github.com/markdownlint/markdownlint). It is important to mention that the extension won't install mdl, so you must do it manually (`gem install mdl`). Just make sure you have the `mdl` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the markdownlint Linter:
+
+```json
+{
+  "linters": {
+    "markdown": {
+      "type": "markdownlint",
+      "include": "/\\.(md|markdown)/",
+      "mdl.config": ".mdlrc.cfg"
+    }
+  }
+}
+```
+
 For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).
-
-(The MIT License)
-
-Copyright (c) 2015 Tagview Tecnologia <team@tagview.com.br>
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
