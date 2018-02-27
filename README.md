@@ -2,6 +2,8 @@
 
 This project provides some useful extensions for [Arcanist](https://github.com/phacility/arcanist).
 
+Note: the rubocop extension requires rubocop v0.50.* or above.
+
 ## Extensions
 
 - [Multi Test Engine](#multi_test_engine)
@@ -120,7 +122,7 @@ You can change the `rspec` executable path if it for some reason is not found in
 
 ### `rubocop_linter`
 
-This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually. Just make sure you have the `rubocop` executable listed on your `$PATH`.
+This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually. Just make sure you have the `rubocop` executable listed on your `$PATH`. 
 
 Below is an example of an `.arclint` file that includes the Rubocop Linter:
 
