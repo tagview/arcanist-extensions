@@ -53,8 +53,13 @@
     },
     "text": {
       "type": "text",
-      "include" : "(\\.(txt|html|haml?)$)",
+      "include" : "(\\.(txt|html)$)",
       "text.max-line-length": 100
+    },
+    "haml": {
+      "type": "text",
+      "include" : "(\\.(haml?)$)",
+      "text.max-line-length": 120
     },
     "ruby": {
       "type": "rubocop",
