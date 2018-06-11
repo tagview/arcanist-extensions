@@ -985,3 +985,6 @@ Rails/TimeZone:
 Rails/Validation:
   Description: 'Use validates :attribute, hash of validations.'
   Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
