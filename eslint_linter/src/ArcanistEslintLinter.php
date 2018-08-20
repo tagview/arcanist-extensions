@@ -30,8 +30,13 @@ final class ArcanistEslintLinter extends ArcanistLinter {
   final public function lintPath($path) {}
 
   public function willLintPaths(array $paths) {
-    $this->checkEslintInstallation();
-    $this->execution = new ExecFuture('eslint --format=json --no-color ' . implode($paths, ' '));
+    if(!$this->checkLocalEslintInstallation() && !$this->checkGlobalEslintInstallation()){
+      throw new ArcanistUsageException(
+        pht('Eslint is not installed, please run `npm install eslint` or add it to your package.json')
+      );
+    }
+
+    $this->setExecution($paths);
     $this->didRunLinters();
   }
 
@@ -47,14 +52,29 @@ final class ArcanistEslintLinter extends ArcanistLinter {
     }
   }
 
-  private function checkEslintInstallation() {
-    if (!Filesystem::binaryExists('eslint')) {
-      throw new ArcanistUsageException(
-        pht('Eslint is not installed, please run `npm install eslint` or add it to your package.json')
-      );
+  private function checkGlobalEslintInstallation() {
+    if (Filesystem::binaryExists('eslint')) {
+      return true;
     }
+    return false;
   }
 
+  private function checkLocalEslintInstallation(){
+    if (Filesystem::binaryExists('.\node_modules\.bin\eslint')) {
+      return true;
+    }
+    return false;
+  }
+
+  private function setExecution(array $paths){
+    if($this->checkLocalEslintInstallation()){
+      $this->execution = new ExecFuture('.\node_modules\.bin\eslint --format=json --no-color ' . implode($paths, ' '));
+    }
+    else{
+      $this->execution = new ExecFuture('eslint --format=json --no-color ' . implode($paths, ' '));
+    }
+  }
+    
   protected function parseLinterOutput($output) {
     $json = json_decode($output, true);
 
