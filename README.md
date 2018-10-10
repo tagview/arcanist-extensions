@@ -12,6 +12,7 @@ Note: the rubocop extension requires rubocop v0.50.* or above.
 - [TAP Test Engine](#tap_test_engine)
 - [SCSS-Lint Linter](#scss_lint_linter)
 - [ESlint Linter](#eslint_linter)
+- [Prettier Linter](#prettier_linter)
 - [markdownlint Linter](#markdownlint_linter)
 
 ## Installation
@@ -122,7 +123,7 @@ You can change the `rspec` executable path if it for some reason is not found in
 
 ### `rubocop_linter`
 
-This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually. Just make sure you have the `rubocop` executable listed on your `$PATH`. 
+This extension will lint your project using the awesome [Rubocop](https://github.com/bbatsov/rubocop) library. It is important to mention that the extension won't install Rubocop, so you must do it manually. Just make sure you have the `rubocop` executable listed on your `$PATH`.
 
 Below is an example of an `.arclint` file that includes the Rubocop Linter:
 
@@ -191,6 +192,31 @@ Below is an example of an `.arclint` file that includes the ESlint Linter:
     "javascript": {
       "type": "eslint",
       "include": "/\\.js$/"
+    }
+  }
+}
+```
+
+### `prettier_linter`
+
+This extension will format your JS code using [Prettier](http://eslint.org). It is important to mention that the extension won't install `prettier`, so you must do it manually. Just make sure you have the `prettier` executable added to the `package.json` of your project and available in the `./node_modules` folder.
+
+Below is an example of an `.arclint` file that includes the Prettier Linter:
+
+```json
+{
+  "linters": {
+    "prettier": {
+      "type": "prettier",
+      "include": "(\\.js$)",
+      "bin": "./node_modules/.bin/prettier",
+      "exclude": [
+        "(^node_modules/)",
+        "(^build/)",
+        "(^dist/)",
+        "(^out/)"
+      ],
+      "prettier.cwd": "./"
     }
   }
 }
