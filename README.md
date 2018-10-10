@@ -2,20 +2,25 @@
 
 This project provides some useful extensions for [Arcanist](https://github.com/phacility/arcanist).
 
+Note: the rubocop extension requires rubocop v0.50.* or above.
+
 ## Extensions
 
 - [Multi Test Engine](#multi_test_engine)
 - [RSpec Test Engine](#rspec_test_engine)
 - [Rubocop Linter](#rubocop_linter)
 - [TAP Test Engine](#tap_test_engine)
+- [SCSS-Lint Linter](#scss_lint_linter)
 - [ESlint Linter](#eslint_linter)
+- [Prettier Linter](#prettier_linter)
+- [markdownlint Linter](#markdownlint_linter)
 
 ## Installation
 
 The easiest way to use any of these extensions on your own project, is by adding this repository as a git submodule, given you are using git (which you obviously should):
 
 ```
-$ git submodule add https://github.com/tagview/arcanist-extensions.git .arcanist-extensions
+$ git submodule add https://github.com/bitnami/arcanist-extensions.git .arcanist-extensions
 $ git submodule update --init
 ```
 
@@ -158,6 +163,23 @@ To use this extension, you must inform the command that will run your tests (jus
 }
 ```
 
+### `scss_lint_linter`
+
+This extension will lint your project using the awesome [SCSS-Lint](https://github.com/causes/scss-lint) library. It is important to mention that the extension won't install scss-lint, so you must do it manually. Just make sure you have the `scss-lint` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the SCSS-Lint Linter:
+
+```json
+{
+  "linters": {
+    "scss-lint": {
+      "type": "scss-lint",
+      "include": "/\\.(scss)$/"
+    }
+  }
+}
+```
+
 ### `eslint_linter`
 
 This extension will lint your project using [ESlint](http://eslint.org). It is important to mention that the extension won't install ESlint, so you must do it manually. Just make sure you have the `eslint` executable listed on your `$PATH`.
@@ -175,27 +197,47 @@ Below is an example of an `.arclint` file that includes the ESlint Linter:
 }
 ```
 
-# License
+### `prettier_linter`
 
-(The MIT License)
+This extension will format your JS code using [Prettier](http://eslint.org). It is important to mention that the extension won't install `prettier`, so you must do it manually. Just make sure you have the `prettier` executable added to the `package.json` of your project and available in the `./node_modules` folder.
 
-Copyright (c) 2015 Tagview Tecnologia <team@tagview.com.br>
+Below is an example of an `.arclint` file that includes the Prettier Linter:
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-'Software'), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+```json
+{
+  "linters": {
+    "prettier": {
+      "type": "prettier",
+      "include": "(\\.js$)",
+      "bin": "./node_modules/.bin/prettier",
+      "exclude": [
+        "(^node_modules/)",
+        "(^build/)",
+        "(^dist/)",
+        "(^out/)"
+      ],
+      "prettier.cwd": "./"
+    }
+  }
+}
+```
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+### `markdownlint_linter`
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+This extension will lint your project using [markdownlint](https://github.com/markdownlint/markdownlint). It is important to mention that the extension won't install mdl, so you must do it manually (`gem install mdl`). Just make sure you have the `mdl` executable listed on your `$PATH`.
+
+Below is an example of an `.arclint` file that includes the markdownlint Linter:
+
+```json
+{
+  "linters": {
+    "markdown": {
+      "type": "markdownlint",
+      "include": "/\\.(md|markdown)/",
+      "mdl.config": ".mdlrc.cfg"
+    }
+  }
+}
+```
+
+For more information regarding Arcanist linters configuration, access the [Arcanist Lint User Guide](https://secure.phabricator.com/book/phabricator/article/arcanist_lint/).

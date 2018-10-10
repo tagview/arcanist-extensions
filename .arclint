@@ -1,0 +1,81 @@
+{
+  "exclude": "(^vendor/)",
+  "linters": {
+    "chmod": {
+      "type": "chmod"
+    },
+    "filename": {
+      "type": "filename",
+      "exclude": [
+        "(.*@2x\\.(png|jpg|jpeg|gif)$)"
+      ]
+    },
+    "jshint": {
+      "type": "jshint",
+      "include": "(\\.js$)",
+      "exclude": [],
+      "jshint.jshintrc": ".jshintrc"
+    },
+    "eslint": {
+      "type": "eslint",
+      "include": "/\\.(js|jsx)$/"
+    },
+    "ts": {
+      "type": "tslint",
+      "include": "(src/.*\\.(ts)$)"
+    },
+    "json": {
+      "type": "json",
+      "include": [
+        "(^\\.arcconfig$)",
+        "(^\\.arclint$)",
+        "(\\.json$)"
+      ]
+    },
+    "jsonnet": {
+      "type": "jsonnet",
+      "include": [
+        "/\\.(jsonnet|libsonnet)$/"
+      ]
+    },
+    "merge-conflict": {
+      "type": "merge-conflict"
+    },
+    "nolint": {
+      "type": "nolint"
+    },
+    "python": {
+      "type": "flake8",
+      "include": "(\\.py$)"
+    },
+    "spelling": {
+      "type": "spelling"
+    },
+    "text": {
+      "type": "text",
+      "include" : "(\\.(txt|html)$)",
+      "text.max-line-length": 100
+    },
+    "haml": {
+      "type": "text",
+      "include" : "(\\.(haml?)$)",
+      "text.max-line-length": 120
+    },
+    "ruby": {
+      "type": "rubocop",
+      "include": "/\\.(rb|rake)$/",
+      "exclude": "(^db/schema\\.rb)",
+      "rubocop.config": ".rubocop.yml"
+    },
+    "scss-lint": {
+      "type": "scss-lint",
+      "include": "/\\.(scss)$/",
+      "scss-lint.config": ".scss-lint.yml"
+    },
+    "markdown": {
+      "type": "markdownlint",
+      "include": "/\\.(md|markdown)/",
+      "mdl.config": ".mdlrc.cfg"
+    }
+  }
+}
